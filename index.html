@@ -3,15 +3,79 @@
 <head>
   <title>Ciudadano Transformador</title>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <style>
+    #info{
+      position:fixed;top:10px;left:10px;
+      background:#000;color:#FFD700;
+      padding:15px;font-family:Arial;font-size:18px;
+      z-index:999;border-radius:10px
+    }
+    #win{
+      position:fixed;top:50%;left:50%;
+      transform:translate(-50%,-50%);
+      background:#FFD700;color:#000;
+      padding:30px;font-size:24px;
+      display:none;z-index:1000;border-radius:15px;text-align:center
+    }
+  </style>
 </head>
 <body>
+  <div id="info">CIUDADANO TRANSFORMADOR<br>Puntos: 0<br>Espacios: 0/17</div>
+  <div id="win">¡FELICITACIONES!<br>Transformaste 17 espacios<br>¡Eres un Ciudadano Transformador!</div>
+
   <a-scene>
-    <a-plane color="#FF8C00" rotation="-90 0 0" width="20" height="20"></a-plane>
+    <a-plane color="#FF8C00" rotation="-90 0 0" width="50" height="50"></a-plane>
     <a-sky color="#FF8C00"></a-sky>
-    <a-box position="-2 0.5 -5" color="green"></a-box>
-    <a-box position="0 0.5 -5" color="green"></a-box>
-    <a-box position="2 0.5 -5" color="green"></a-box>
-    <a-camera position="0 1.6 0" wasd-controls></a-camera>
+    <a-light type="ambient" color="#FFF"></a-light>
+    
+    <!-- 17 CAJAS VERDES -->
+    <a-box position="-8 0.5 -8" color="green" class="clickable"></a-box>
+    <a-box position="-4 0.5 -8" color="green" class="clickable"></a-box>
+    <a-box position="0 0.5 -8" color="green" class="clickable"></a-box>
+    <a-box position="4 0.5 -8" color="green" class="clickable"></a-box>
+    <a-box position="8 0.5 -8" color="green" class="clickable"></a-box>
+    
+    <a-box position="-8 0.5 -4" color="green" class="clickable"></a-box>
+    <a-box position="-4 0.5 -4" color="green" class="clickable"></a-box>
+    <a-box position="0 0.5 -4" color="green" class="clickable"></a-box>
+    <a-box position="4 0.5 -4" color="green" class="clickable"></a-box>
+    <a-box position="8 0.5 -4" color="green" class="clickable"></a-box>
+    
+    <a-box position="-8 0.5 0" color="green" class="clickable"></a-box>
+    <a-box position="-4 0.5 0" color="green" class="clickable"></a-box>
+    <a-box position="0 0.5 0" color="green" class="clickable"></a-box>
+    <a-box position="4 0.5 0" color="green" class="clickable"></a-box>
+    <a-box position="8 0.5 0" color="green" class="clickable"></a-box>
+    
+    <a-box position="-4 0.5 4" color="green" class="clickable"></a-box>
+    <a-box position="4 0.5 4" color="green" class="clickable"></a-box>
+    
+    <a-camera position="0 1.6 5" wasd-controls>
+      <a-cursor color="yellow"></a-cursor>
+    </a-camera>
   </a-scene>
+
+  <script>
+    let puntos = 0;
+    let espacios = 0;
+    const info = document.getElementById('info');
+    const win = document.getElementById('win');
+    
+    document.querySelectorAll('.clickable').forEach(caja => {
+      caja.addEventListener('click', () => {
+        if(caja.getAttribute('color') === 'green'){
+          caja.setAttribute('color', 'gray');
+          caja.setAttribute('opacity', '0.3');
+          puntos += 10;
+          espacios += 1;
+          info.innerHTML = `CIUDADANO TRANSFORMADOR<br>Puntos: ${puntos}<br>Espacios: ${espacios}/17`;
+          
+          if(espacios >= 17){
+            win.style.display = 'block';
+          }
+        }
+      });
+    });
+  </script>
 </body>
 </html>
