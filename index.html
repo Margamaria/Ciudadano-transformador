@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Ciudadano Transformador</title>
+
+<script src="https://aframe.io/releases/1.8.0/aframe.min.js"></script>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+}
+
+#panel{
+position:fixed;
+top:15px;
+left:15px;
+z-index:10;
+background:rgba(0,0,0,.80);
+color:white;
+padding:18px;
+border-radius:15px;
+width:260px;
+}
+
+#titulo{
+font-size:22px;
+font-weight:bold;
+color:#FFD700;
+margin-bottom:8px;
+}
+
+#puntos{
+font-size:18px;
+margin-bottom:8px;
+}
+
+#progreso{
+font-size:16px;
+}
+
+#mensaje{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+z-index:20;
+background:#111;
+color:white;
+padding:15px 25px;
+border-radius:15px;
+display:none;
+font-size:18px;
+text-align:center;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- PANEL DEL JUGADOR -->
+
+<div id="panel">
+
+<div id="titulo">
+🌎 CIUDADANO TRANSFORMADOR
+</div>
+
+<div id="puntos">
+⭐ Puntos: <span id="score">0</span>
+</div>
+
+<div id="progreso">
+🏛 Espacios: <span id="spaces">0</span>/17
+</div>
+
+<div id="progreso">
+🏅 Insignias: <span id="badges">0</span>/4
+</div>
+
+</div>
+
+
+<div id="mensaje"></div>
+
+
+<a-scene
+background="color:#87CEEB"
+renderer="colorManagement:true">
+
+<!-- LUCES -->
+
+<a-light
+type="ambient"
+color="#FFFFFF"
+intensity="1.5">
+</a-light>
+
+<a-light
+type="directional"
+color="#FFFFFF"
+intensity="1"
+position="0 20 10">
+</a-light>
+
+
+<!-- SUELO -->
+
+<a-plane
+rotation="-90 0 0"
+width="200"
+height="200"
+color="#4CAF50">
+</a-plane>
+
+
+<!-- CIELO -->
+
+<a-sky
+color="#87CEEB">
+</a-sky>
+
+
+<!-- CAMARA -->
+
+<a-entity
+id="jugador"
+position="0 1.6 15">
+
+<a-camera>
+
+<a-cursor
+color="#FFD700">
+</a-cursor>
+
+</a-camera>
+
+</a-entity>
+
+
+<!-- ===================================== -->
+<!-- TITULO CENTRAL -->
+<!-- ===================================== -->
+
+<a-text
+value="CIUDADANO TRANSFORMADOR"
+position="-8 8 -20"
+color="#FFFFFF"
+scale="3 3 3">
+</a-text>
+
+<a-text
+value="Explora • Aprende • Participa • Transforma"
+position="-7 6.8 -20"
+color="#FFD700"
+scale="1.8 1.8 1.8">
+</a-text>
+
+
+<!-- ===================================== -->
+<!-- EDIFICIO 1 -->
+<!-- ===================================== -->
+
+<a-entity
+position="-30 0 -20"
+class="espacio"
+data-nombre="Política Exterior">
+
+<a-box
+position="0 3 0"
+width="8"
+height="6"
+depth="6"
+color="#1565C0">
+</a-box>
+
+<a-text
+value="1. POLITICA EXTERIOR"
+position="-3.8 7 0"
+scale="2 2 2"
+color="#FFFFFF">
+</a-text>
+
+<!-- PORTALES -->
+
+<a-cylinder
+position="-2 1 -3.2"
+radius="0.8"
+height="2"
+color="#00E5FF"
+class="portal"
+onclick="abrirActividad('Politica Exterior - Semana 6')">
+</a-cylinder>
+
+<a-text
+value="SEMANA 6"
+position="-3 2.5 -3.2"
+scale="1.3 1.3 1.3">
+</a-text>
+
+
+<a-cylinder
+position="0 1 -3.2"
+radius="0.8"
+height="2"
+color="#FFD600"
+class="portal"
+onclick="abrirActividad('Politica Exterior - Semana 7')">
+</a-cylinder>
+
+<a-text
+value="SEMANA 7"
+position="-1 2.5 -3.2"
+scale="1.3 1.3 1.3">
+</a-text>
+
+
+<a-cylinder
+position="2 1 -3.2"
+radius="0.8"
+height="2"
+color="#FF4081"
+class="portal"
+onclick="abrirActividad('Politica Exterior - Semana 8')">
+</a-cylinder>
+
+<a-text
+value="SEMANA 8"
+position="1 2.5 -3.2"
+scale="1.3 1.3 1.3">
+</a-text>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- EDIFICIO 2 -->
+<!-- ===================================== -->
+
+<a-entity
+position="-15 0 -20"
+class="espacio"
+data-nombre="Procesos Sociopolíticos de América Anglosajona">
+
+<a-box
+position="0 3 0"
+width="8"
+height="6"
+depth="6"
+color="#673AB7">
+</a-box>
+
+<a-text
+value="2. AMERICA ANGLOSAJONA"
+position="-4 7 0"
+scale="1.7 1.7 1.7">
+</a-text>
+
+<a-cylinder
+position="-2 1 -3.2"
+radius=".8"
+height="2"
+color="#00E5FF"
+onclick="abrirActividad('America Anglosajona - Semana 6')">
+</a-cylinder>
+
+<a-cylinder
+position="0 1 -3.2"
+radius=".8"
+height="2"
+color="#FFD600"
+onclick="abrirActividad('America Anglosajona - Semana 7')">
+</a-cylinder>
+
+<a-cylinder
+position="2 1 -3.2"
+radius=".8"
+height="2"
+color="#FF4081"
+onclick="abrirActividad('America Anglosajona - Semana 8')">
+</a-cylinder>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- EDIFICIO 3 -->
+<!-- ===================================== -->
+
+<a-entity
+position="0 0 -20"
+class="espacio"
+data-nombre="Procesos Sociopolíticos de Europa">
+
+<a-box
+position="0 3 0"
+width="8"
+height="6"
+depth="6"
+color="#9C27B0">
+</a-box>
+
+<a-text
+value="3. EUROPA"
+position="-2 7 0"
+scale="2 2 2">
+</a-text>
+
+<a-cylinder
+position="-2 1 -3.2"
+radius=".8"
+height="2"
+color="#00E5FF"
+onclick="abrirActividad('Europa - Semana 6')">
+</a-cylinder>
+
+<a-cylinder
+position="0 1 -3.2"
+radius=".8"
+height="2"
+color="#FFD600"
+onclick="abrirActividad('Europa - Semana 7')">
+</a-cylinder>
+
+<a-cylinder
+position="2 1 -3.2"
+radius=".8"
+height="2"
+color="#FF4081"
+onclick="abrirActividad('Europa - Semana 8')">
+</a-cylinder>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- EDIFICIO 4 -->
+<!-- ===================================== -->
+
+<a-entity
+position="15 0 -20"
+class="espacio"
+data-nombre="Mundo Posmoderno">
+
+<a-box
+position="0 3 0"
+width="8"
+height="6"
+depth="6"
+color="#E91E63">
+</a-box>
+
+<a-text
+value="4. MUNDO POSMODERNO"
+position="-4 7 0"
+scale="1.7 1.7 1.7">
+</a-text>
+
+<a-cylinder
+position="-2 1 -3.2"
+radius=".8"
+height="2"
+color="#00E5FF"
+onclick="abrirActividad('Mundo Posmoderno - Semana 6')">
+</a-cylinder>
+
+<a-cylinder
+position="0 1 -3.2"
+radius=".8"
+height="2"
+color="#FFD600"
+onclick="abrirActividad('Mundo Posmoderno - Semana 7')">
+</a-cylinder>
+
+<a-cylinder
+position="2 1 -3.2"
+radius=".8"
+height="2"
+color="#FF4081"
+onclick="abrirActividad('Mundo Posmoderno - Semana 8')">
+</a-cylinder>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- EDIFICIO 5 -->
+<!-- ===================================== -->
+
+<a-entity
+position="30 0 -20"
+class="espacio"
+data-nombre="América Latina y el Caribe">
+
+<a-box
+position="0 3 0"
+width="8"
+height="6"
+depth="6"
+color="#FF9800">
+</a-box>
+
+<a-text
+value="5. AMERICA LATINA"
+position="-3.5 7 0"
+scale="1.8 1.8 1.8">
+</a-text>
+
+<a-cylinder
+position="-2 1 -3.2"
+radius=".8"
+height="2"
+color="#00E5FF"
+onclick="abrirActividad('America Latina - Semana 6')">
+</a-cylinder>
+
+<a-cylinder
+position="0 1 -3.2"
+radius=".8"
+height="2"
+color="#FFD600"
+onclick="abrirActividad('America Latina - Semana 7')">
+</a-cylinder>
+
+<a-cylinder
+position="2 1 -3.2"
+radius=".8"
+height="2"
+color="#FF4081"
+onclick="abrirActividad('America Latina - Semana 8')">
+</a-cylinder>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- EDIFICIO 6 -->
+<!-- ===================================== -->
+
+<a-entity
+position="-30 0 -5"
+class="espacio">
+
+<a-box
+position="0 3 0"
+width="8"
+height="6"
+depth="6"
+color="#00897B">
+</a-box>
+
+<a-text
+value="6. SISTEMA POLITICO COLOMBIANO"
+position="-4 7 0"
+scale="1.5 1.5 1.5">
+</a-text>
+
+<a-cylinder
+position="-2 1 -3.2"
+radius=".8"
+height="2"
+color="#00E5FF"
+onclick="abrirActividad('Sistema Politico - Semana 6')">
+</a-cylinder>
+
+<a-cylinder
+position="0 1 -3.2"
+radius=".8"
+height="2"
+color="#FFD600"
+onclick="abrirActividad('Sistema Politico - Semana 7')">
+</a-cylinder>
+
+<a-cylinder
+position="2 1 -3.2"
+radius=".8"
+height="2"
+color="#FF4081"
+onclick="abrirActividad('Sistema Politico - Semana 8')">
+</a-cylinder>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- EDIFICIO 7 -->
+<!-- ===================================== -->
+
+<a-entity
+position="-15 0 -5">
+
+<a-box
+position="0 3 0"
+width="8"
+height="6"
+depth="6"
+color="#795548">
+</a-box>
+
+<a-text
+value="7. TEORIA DEL CONFLICTO"
+position="-3.5 7 0"
+scale="1.8 1.8 1.8">
+</a-text>
+
+<a-cylinder
+position="-2 1 -3.2"
+radius=".8"
+height="2"
+color="#00E5FF"
+onclick="abrirActividad('Teoria del Conflicto - Semana 6')">
+</a-cylinder>
+
+<a-cylinder
+position="0 1 -3.2"
+radius=".8"
+height="2"
+color="#FFD600"
+onclick="abrirActividad('Teoria del Conflicto - Semana 7')">
+</a-cylinder>
+
+<a-cylinder
+position="2 1 -3.2"
+radius=".8"
+height="2"
+color="#FF4081"
+onclick="abrirActividad('Teoria del Conflicto - Semana 8')">
+</a-cylinder>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- EDIFICIO 8 -->
+<!-- ===================================== -->
+
+<a-entity
+position="0 0 -5">
+
+<a-box
+position="0 3 0"
+width="8"
+height="6"
+depth="6"
+color="#3F51B5">
+</a-box>
+
+<a-text
+value="8. TEORIAS DEL ESTADO"
+position="-3.2 7 0"
+scale="1.8 1.8 1.8">
+</a-text>
+
+<a-cylinder
+position="-2 1 -3.2"
+radius=".8"
+height="2"
+color="#00E5FF"
+onclick="abrirActividad('Teorias del Estado - Semana 6')">
+</a-cylinder>
+
+<a-cylinder
+position="0 1 -3.2"
+radius=".8"
+height="2"
+color="#FFD600"
+onclick="abrirActividad('Teorias del Estado - Semana 7')">
+</a-cylinder>
+
+<a-cylinder
+position="2 1 -3.2"
+radius=".8"
+height="2"
+color="#FF4081"
+onclick="abrirActividad('Teorias del Estado - Semana 8')">
+</a-cylinder>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- EDIFICIO 9 -->
+<!-- ===================================== -->
+
+<a-entity
+position="15 0 -5">
+
+<a-box
+position="0 3 0"
+width="8"
+height="6"
+depth="6"
+color="#C2185B">
+</a-box>
+
+<a-text
+value="9. TEORIAS DE LA DEMOCRACIA"
+position="-4 7 0"
+scale="1.5 1.5 1.5">
+</a-text>
+
+<a-cylinder
+position="-2 1 -3.2"
+radius=".8"
+height="2"
+color="#00E5FF"
+onclick="abrirActividad('Democracia - Semana 6')">
+</a-cylinder>
+
+<a-cylinder
+position="0 1 -3.2"
+radius=".8"
+height="2"
+color="#FFD600"
+onclick="abrirActividad('Democracia - Semana 7')">
+</a-cylinder>
+
+<a-cylinder
+position="2 1 -3.2"
+radius=".8"
+height="2"
+color="#FF4081"
+onclick="abrirActividad('Democracia - Semana 8')">
+</a-cylinder>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- EDIFICIO 10 -->
+<!-- ===================================== -->
+
+<a-entity
+position="30 0 -5">
+
+<a-box
+position="0 3 0"
+width="8"
+height="6"
+depth="6"
+color="#0097A7">
+</a-box>
+
+<a-text
+value="10. PARTICIPACION POLITICA"
+position="-4 7 0"
+scale="1.6 1.6 1.6">
+</a-text>
+
+<a-cylinder
+position="-2 1 -3.2"
+radius=".8"
+height="2"
+color="#00E5FF"
+onclick="abrirActividad('Participacion Politica - Semana 6')">
+</a-cylinder>
+
+<a-cylinder
+position="0 1 -3.2"
+radius=".8"
+height="2"
+color="#FFD600"
+onclick="abrirActividad('Participacion Politica - Semana 7')">
+</a-cylinder>
+
+<a-cylinder
+position="2 1 -3.2"
+radius=".8"
+height="2"
+color="#FF4081"
+onclick="abrirActividad('Participacion Politica - Semana 8')">
+</a-cylinder>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- EDIFICIO 11 -->
+<!-- ===================================== -->
+
+<a-entity
+position="-30 0 10">
+
+<a-box
+position="0 3 0"
+width="8"
+height="6"
+depth="6"
+color="#5E35B1">
+</a-box>
+
+<a-text
+value="11. CIENCIA POLITICA"
+position="-3 7 0"
+scale="1.9 1.9 1.9">
+</a-text>
+
+<a-cylinder
+position="-2 1 -3.2"
+radius=".8"
+height="2"
+color="#00E5FF"
+onclick="abrirActividad('Ciencia Politica - Semana 6')">
+</a-cylinder>
+
+<a-cylinder
+position="0 1 -3.2"
+radius=".8"
+height="2"
+color="#FFD600"
+onclick="abrirActividad('Ciencia Politica - Semana 7')">
+</a-cylinder>
+
+<a-cylinder
+position="2 1 -3.2"
+radius=".8"
+height="2"
+color="#FF4081"
+onclick="abrirActividad('Ciencia Politica - Semana 8')">
+</a-cylinder>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- EDIFICIO 12 -->
+<!-- ===================================== -->
+
+<a-entity
+position="-15 0 10">
+
+<a-box
+position="0 3 0"
+width="8"
+height="6"
+depth="6"
+color="#43A047">
+</a-box>
+
+<a-text
+value="12. ANALISIS GEOGRAFICO"
+position="-3.5 7 0"
+scale="1.7 1.7 1.7">
+</a-text>
+
+<a-cylinder
+position="-2 1 -3.2"
+radius=".8"
+height="2"
+color="#00E5FF"
+onclick="abrirActividad('Analisis Geografico - Semana 6')">
+</a-cylinder>
+
+<a-cylinder
+position="0 1 -3.2"
+radius=".8"
+height="2"
+color="#FFD600"
+onclick="abrirActividad('Analisis Geografico - Semana 7')">
+</a-cylinder>
+
+<a-cylinder
+position="2 1 -3.2"
+radius=".8"
+height="2"
+color="#FF4081"
+onclick="abrirActividad('Analisis Geografico - Semana 8')">
+</a-cylinder>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- EDIFICIO 13 -->
+<!-- ===================================== -->
+
+<a-entity
+position="0 0 10">
+
+<a-box
+position="0 3 0"
+width="8"
+height="6"
+depth="6"
+color="#F57C00">
+</a-box>
+
+<a-text
+value="13. ECONOMIA POLITICA"
+position="-3.5 7 0"
+scale="1.8 1.8 1.8">
+</a-text>
+
+<a-cylinder
+position="-2 1 -3.2"
+radius=".8"
+height="2"
+color="#00E5FF"
+onclick="abrirActividad('Economia Politica - Semana 6')">
+</a-cylinder>
+
+<a-cylinder
+position="0 1 -3.2"
+radius=".8"
+height="2"
+color="#FFD600"
+onclick="abrirActividad('Economia Politica - Semana 7')">
+</a-cylinder>
+
+<a-cylinder
+position="2 1 -3.2"
+radius=".8"
+height="2"
+color="#FF4081"
+onclick="abrirActividad('Economia Politica - Semana 8')">
+</a-cylinder>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- EDIFICIO 14 -->
+<!-- ===================================== -->
+
+<a-entity
+position="15 0 10">
+
+<a-box
+position="0 3 0"
+width="8"
+height="6"
+depth="6"
+color="#6D4C41">
+</a-box>
+
+<a-text
+value="14. HISTORIA DE COLOMBIA"
+position="-3.5 7 0"
+scale="1.7 1.7 1.7">
+</a-text>
+
+<a-cylinder
+position="-2 1 -3.2"
+radius=".8"
+height="2"
+color="#00E5FF"
+onclick="abrirActividad('Historia de Colombia - Semana 6')">
+</a-cylinder>
+
+<a-cylinder
+position="0 1 -3.2"
+radius=".8"
+height="2"
+color="#FFD600"
+onclick="abrirActividad('Historia de Colombia - Semana 7')">
+</a-cylinder>
+
+<a-cylinder
+position="2 1 -3.2"
+radius=".8"
+height="2"
+color="#FF4081"
+onclick="abrirActividad('Historia de Colombia - Semana 8')">
+</a-cylinder>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- EDIFICIO 15 -->
+<!-- ===================================== -->
+
+<a-entity
+position="30 0 10">
+
+<a-box
+position="0 3 0"
+width="8"
+height="6"
+depth="6"
+color="#B71C1C">
+</a-box>
+
+<a-text
+value="15. CONFLICTO COLOMBIANO"
+position="-3.8 7 0"
+scale="1.7 1.7 1.7">
+</a-text>
+
+<a-cylinder
+position="-2 1 -3.2"
+radius=".8"
+height="2"
+color="#00E5FF"
+onclick="abrirActividad('Conflicto Colombiano - Semana 6')">
+</a-cylinder>
+
+<a-cylinder
+position="0 1 -3.2"
+radius=".8"
+height="2"
+color="#FFD600"
+onclick="abrirActividad('Conflicto Colombiano - Semana 7')">
+</a-cylinder>
+
+<a-cylinder
+position="2 1 -3.2"
+radius=".8"
+height="2"
+color="#FF4081"
+onclick="abrirActividad('Conflicto Colombiano - Semana 8')">
+</a-cylinder>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- EDIFICIO 16 -->
+<!-- ===================================== -->
+
+<a-entity
+position="45 0 0">
+
+<a-box
+position="0 3 0"
+width="8"
+height="6"
+depth="6"
+color="#388E3C">
+</a-box>
+
+<a-text
+value="16. DOCTRINAS ECONOMICAS"
+position="-3.8 7 0"
+scale="1.7 1.7 1.7">
+</a-text>
+
+<a-cylinder
+position="-2 1 -3.2"
+radius=".8"
+height="2"
+color="#00E5FF"
+onclick="abrirActividad('Doctrinas Economicas - Semana 6')">
+</a-cylinder>
+
+<a-cylinder
+position="0 1 -3.2"
+radius=".8"
+height="2"
+color="#FFD600"
+onclick="abrirActividad('Doctrinas Economicas - Semana 7')">
+</a-cylinder>
+
+<a-cylinder
+position="2 1 -3.2"
+radius=".8"
+height="2"
+color="#FF4081"
+onclick="abrirActividad('Doctrinas Economicas - Semana 8')">
+</a-cylinder>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- EDIFICIO 17 -->
+<!-- ===================================== -->
+
+<a-entity
+position="45 0 15">
+
+<a-box
+position="0 3 0"
+width="8"
+height="6"
+depth="6"
+color="#512DA8">
+</a-box>
+
+<a-text
+value="17. FILOSOFIA POLITICA"
+position="-3.5 7 0"
+scale="1.8 1.8 1.8">
+</a-text>
+
+<a-cylinder
+position="-2 1 -3.2"
+radius=".8"
+height="2"
+color="#00E5FF"
+onclick="abrirActividad('Filosofia Politica - Semana 6')">
+</a-cylinder>
+
+<a-cylinder
+position="0 1 -3.2"
+radius=".8"
+height="2"
+color="#FFD600"
+onclick="abrirActividad('Filosofia Politica - Semana 7')">
+</a-cylinder>
+
+<a-cylinder
+position="2 1 -3.2"
+radius=".8"
+height="2"
+color="#FF4081"
+onclick="abrirActividad('Filosofia Politica - Semana 8')">
+</a-cylinder>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- ENEMIGO 1 -->
+<!-- ===================================== -->
+
+<a-entity
+position="-45 3 -25"
+id="enemigo1">
+
+<a-sphere
+radius="3"
+color="#212121">
+
+<a-animation
+attribute="rotation"
+to="0 360 0"
+dur="5000"
+repeat="indefinite">
+</a-animation>
+
+</a-sphere>
+
+<a-text
+value="😴 APATIA"
+position="-2.5 5 0"
+scale="2 2 2"
+color="#FF5252">
+</a-text>
+
+<a-text
+value="DERROTAR"
+position="-1.8 -5 0"
+scale="1.5 1.5 1.5"
+color="#FFD700">
+</a-text>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- ENEMIGO 2 -->
+<!-- ===================================== -->
+
+<a-entity
+position="45 3 -25"
+id="enemigo2">
+
+<a-sphere
+radius="3"
+color="#6A1B9A">
+
+<a-animation
+attribute="rotation"
+to="360 0 360"
+dur="4000"
+repeat="indefinite">
+</a-animation>
+
+</a-sphere>
+
+<a-text
+value="👁 FALTA DE CONCIENCIA"
+position="-5 5 0"
+scale="1.7 1.7 1.7"
+color="#FFEA00">
+</a-text>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- ENEMIGO 3 -->
+<!-- ===================================== -->
+
+<a-entity
+position="-45 3 25"
+id="enemigo3">
+
+<a-sphere
+radius="3"
+color="#D84315">
+
+<a-animation
+attribute="rotation"
+to="360 360 0"
+dur="3500"
+repeat="indefinite">
+</a-animation>
+
+</a-sphere>
+
+<a-text
+value="💔 FALTA DE SENSIBILIDAD"
+position="-5 5 0"
+scale="1.7 1.7 1.7"
+color="#FFFFFF">
+</a-text>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- JEFE FINAL -->
+<!-- ===================================== -->
+
+<a-entity
+position="45 4 30"
+id="enemigo4">
+
+<a-sphere
+radius="4"
+color="#000000">
+
+<a-animation
+attribute="scale"
+from="1 1 1"
+to="1.2 1.2 1.2"
+dur="1000"
+direction="alternate"
+repeat="indefinite">
+</a-animation>
+
+</a-sphere>
+
+<a-text
+value="👤 INDIVIDUALISMO"
+position="-5 6 0"
+scale="2 2 2"
+color="#FF1744">
+</a-text>
+
+<a-text
+value="JEFE FINAL"
+position="-2.5 4 0"
+scale="1.5 1.5 1.5"
+color="#FFD700">
+</a-text>
+
+</a-entity>
+
+
+
+<!-- ===================================== -->
+<!-- PORTAL FINAL -->
+<!-- ===================================== -->
+
+<a-ring
+position="0 4 -40"
+rotation="0 0 0"
+radius-inner="4"
+radius-outer="5"
+color="#FFD700">
+
+<a-animation
+attribute="rotation"
+to="0 360 0"
+dur="5000"
+repeat="indefinite">
+</a-animation>
+
+</a-ring>
+
+<a-text
+value="PORTAL DEL CIUDADANO TRANSFORMADOR"
+position="-9 10 -40"
+scale="2 2 2"
+color="#FFD700">
+</a-text>
+
+
+</a-scene>
+
+
+
+<script>
+
+
+/* =====================================
+   SISTEMA DE PUNTOS
+===================================== */
+
+let puntos = 0;
+
+let espacios = 0;
+
+let insignias = 0;
+
+
+function actualizar(){
+
+document.getElementById("score").innerText = puntos;
+
+document.getElementById("spaces").innerText = espacios;
+
+document.getElementById("badges").innerText = insignias;
+
+}
+
+
+/* =====================================
+   MENSAJES
+===================================== */
+
+function mensaje(texto){
+
+let caja =
+document.getElementById("mensaje");
+
+caja.innerHTML = texto;
+
+caja.style.display = "block";
+
+setTimeout(function(){
+
+caja.style.display = "none";
+
+},4000);
+
+}
+
+
+/* =====================================
+   ACTIVIDADES
+===================================== */
+
+function abrirActividad(nombre){
+
+puntos += 100;
+
+mensaje(
+"🎮 RETO: " + nombre +
+"<br><br>Has entrado al desafío.<br>" +
+"+100 puntos"
+);
+
+actualizar();
+
+}
+
+
+/* =====================================
+   TECLAS
+===================================== */
+
+document.addEventListener(
+"keydown",
+
+function(event){
+
+let jugador =
+document.getElementById("jugador");
+
+let posicion =
+jugador.getAttribute("position");
+
+
+if(event.key === "ArrowUp"){
+
+posicion.z -= 1;
+
+}
+
+if(event.key === "ArrowDown"){
+
+posicion.z += 1;
+
+}
+
+if(event.key === "ArrowLeft"){
+
+posicion.x -= 1;
+
+}
+
+if(event.key === "ArrowRight"){
+
+posicion.x += 1;
+
+}
+
+jugador.setAttribute(
+"position",
+posicion
+);
+
+}
+
+);
+
+
+/* =====================================
+   INICIO
+===================================== */
+
+mensaje(
+"🌎 Bienvenido, Ciudadano Transformador<br><br>" +
+"Explora los 17 espacios académicos.<br>" +
+"Supera los retos y derrota a los enemigos."
+);
+
+actualizar();
+
+</script>
+
+
+</body>
+
+</html>
